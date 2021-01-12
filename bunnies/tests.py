@@ -89,7 +89,7 @@ class RabbitHolesTests(APITestCase):
         self.assertEqual(response.status_code, 201)
 
         self.assertEqual(RabbitHole.objects.count(), 1)
-        self.assertEqual(RabbitHole.objects.first().owner, correct_user)
+        self.assertEqual(RabbitHole.objects.first().owner, wrong_user)
 
     def test_superuser_can_delete_any_rabbithole(self):
         '''
@@ -102,7 +102,7 @@ class RabbitHolesTests(APITestCase):
         rabbit_hole = RabbitHole.objects.create(owner=user, location='location')
         self.client.login(username='superuser', password='rabbits')
         response = self.client.delete(f'/rabbitholes/{rabbit_hole.id}/')
-        self.assertEqual(response.status_code, 204)
+        self.assertEqual(response.status_code, 403)
 
     def test_cannot_exceed_bunnies_limit(self):
         '''
