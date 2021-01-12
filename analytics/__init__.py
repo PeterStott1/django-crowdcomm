@@ -1,2 +1,2 @@
 import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'crowdcomms_code_test.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'testdejangocom.settings')
